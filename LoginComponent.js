@@ -10,13 +10,9 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-
-      
     };
   }
 
-
-  
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -42,12 +38,6 @@ class Login extends Component {
         <View style={{ marginTop: 30 }}>
           <Button style={{ marginBottom: 20 }} color="#5637DD" title="Log In" />
 
-          <Button
-            style={{ marginBottom: 40 }}
-            type="outline"
-            title="Cancel"
-            
-          />
         </View>
         <Divider width={0.2} />
         <View style={styles.formButton}>

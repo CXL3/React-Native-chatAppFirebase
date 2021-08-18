@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Input, Button } from "react-native-elements";
+import { auth } from './firebase'
+
 
 class Register extends Component {
   constructor(props) {
@@ -16,6 +18,26 @@ class Register extends Component {
   static navigationOptions = {
     title: "SignUp",
   };
+
+  registerNow(){
+    auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+    .then((userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    user.updateProfile({
+    displayName: this.state.name,
+    photoURL: this.state.imageUrl ? this.state.imageUrl : "https://1.gravatar.com/avatar/dcf6bcac06c1011632d4a4466edd7371?s=180&d=identicon&r=G"
+    }).catch(function (error) {
+    alert(error.message)
+    });
+    // ...
+    })
+    .catch((error) => {
+    var errorMessage = error.message;
+    alert(errorMessage)
+    });
+
+  }
   render() {
     const { navigate } = this.props.navigation;
 
@@ -49,9 +71,9 @@ class Register extends Component {
         
         <Input
         placeholder='Enter your image url'
-
         leftIcon={{ type: 'material', name: 'face' }}
-        onChangeText={text => setImageUrl(text)}
+        onChangeText={(imageUrl) => this.setState({ imageUrl })}
+        value={this.state.imageUrl}
         />
 
         <View>
@@ -59,12 +81,7 @@ class Register extends Component {
             style={{ marginBottom: 20, marginTop: 70 }}
             color="#5637DD"
             title="Submit"
-          />
-          <Button
-            type="outline"
-            title="Cancel"
-            color="#5637DD"
-            onPress={() => navigate("LogIn")}
+            onPress={() => this.registerNow()}
           />
         </View>
       </View>
