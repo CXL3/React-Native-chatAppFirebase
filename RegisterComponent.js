@@ -1,32 +1,40 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { Input, Button, Divider } from "react-native-elements";
+import { Input, Button } from "react-native-elements";
 
-
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      username: "",
       email: "",
       password: "",
-
-      
+      imageUrl:"",
     };
   }
-
-
-  
+  static navigationOptions = {
+    title: "SignUp",
+  };
   render() {
     const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Log In</Text>
+    
         <Input
-          placeholder="Your Email"
-          leftIcon={{ type: "font-awesome", name: "user-o" }}
+          placeholder="Email"
+          leftIcon={{ type: "font-awesome", name: "envelope" }}
           onChangeText={(email) => this.setState({ email })}
           value={this.state.email}
+          containerStyle={styles.formInput}
+          leftIconContainerStyle={styles.formIcon}
+        />
+        <Input
+          placeholder="Username"
+          leftIcon={{ type: "font-awesome", name: "user-o" }}
+          onChangeText={(username) => this.setState({ username })}
+          value={this.state.username}
           containerStyle={styles.formInput}
           leftIconContainerStyle={styles.formIcon}
         />
@@ -37,32 +45,32 @@ class Login extends Component {
           value={this.state.password}
           containerStyle={styles.formInput}
           leftIconContainerStyle={styles.formIcon}
-        />
+          />
         
-        <View style={{ marginTop: 30 }}>
-          <Button style={{ marginBottom: 20 }} color="#5637DD" title="Log In" />
+        <Input
+        placeholder='Enter your image url'
 
+        leftIcon={{ type: 'material', name: 'face' }}
+        onChangeText={text => setImageUrl(text)}
+        />
+
+        <View>
           <Button
-            style={{ marginBottom: 40 }}
+            style={{ marginBottom: 20, marginTop: 70 }}
+            color="#5637DD"
+            title="Submit"
+          />
+          <Button
             type="outline"
             title="Cancel"
-            
+            color="#5637DD"
+            onPress={() => navigate("LogIn")}
           />
         </View>
-        <Divider width={0.2} />
-        <View style={styles.formButton}>
-          <Button
-            type="outline"
-            title="Sign up"
-            onPress={() => navigate("Register")}
-            
-          />
-        </View> 
       </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
@@ -71,26 +79,14 @@ const styles = StyleSheet.create({
   formIcon: {
     marginRight: 10,
   },
-  formInput: {
-    padding: 10,
-  },
-  formCheckbox: {
-    margin: 10,
-    backgroundColor: null,
-  },
-  formButton: {
-    marginTop: 20,
-    backgroundColor: "white",
-    color: "white",
-    borderRadius: 4,
-  },
+
   text: {
     textAlign: "center",
     fontSize: 30,
+    fontFamily: "TrebuchetMS-Bold",
     fontWeight: "bold",
-    margin: 60,
+    margin: 40,
     marginBottom: 40,
   },
 });
-
-export default Login;
+export default Register;
