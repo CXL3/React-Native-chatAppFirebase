@@ -36,7 +36,7 @@ class Login extends Component {
         />
         
         <View style={{ marginTop: 30 }}>
-          <Button style={{ marginBottom: 20 }} color="#5637DD" title="Log In" />
+          <Button style={{ marginBottom: 20 }} color="#5637DD" title="Log In" onPress={() => navigate("Chat")} />
 
         </View>
         <Divider width={0.2} />
