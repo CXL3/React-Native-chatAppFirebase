@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     fontSize: 30,
-    fontFamily: "TrebuchetMS-Bold",
     fontWeight: "bold",
     margin: 60,
     marginBottom: 40,
