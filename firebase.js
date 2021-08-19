@@ -3,7 +3,8 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 var firebaseConfig = {
-// My config
+    // My config
+
 };
 
 let app;

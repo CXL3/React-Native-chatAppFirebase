@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Input, Button, Divider } from "react-native-elements";
-
+import { auth } from './firebase'
 
 class Login extends Component {
   constructor(props) {
@@ -12,6 +12,33 @@ class Login extends Component {
       password: "",
     };
   }
+  // registerNow(){
+  //   auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+  //   .then((userCredential) => {
+  //   // Signed in
+  //   var user = userCredential.user;
+  //   user.updateProfile({
+  //   displayName: this.state.name,
+  //   photoURL: this.state.imageUrl ? this.state.imageUrl : "https://1.gravatar.com/avatar/dcf6bcac06c1011632d4a4466edd7371?s=180&d=identicon&r=G"
+  //   }).catch(function (error) {
+  //   alert(error.message)
+  //   });
+  //   // ...
+  //   })
+  //   .catch((error) => {
+  //   var errorMessage = error.message;
+  //   alert(errorMessage)
+  //   });
+
+  // }
+  signIn(){
+    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+    .catch((error) => {
+    var errorMessage = error.message;
+    alert(errorMessage)
+    });
+  }
+
 
   render() {
     const { navigate } = this.props.navigation;
