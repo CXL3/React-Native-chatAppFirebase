@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import LogIn from "./LoginComponent";
 import Register from "./RegisterComponent";
 import Chat from "./ChatComponent";
-// test
+// added second ssh to gitlab,testing github still connected correctly
 const Stack = createStackNavigator();
 
 class App extends Component {
