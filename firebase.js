@@ -4,7 +4,12 @@ import 'firebase/firestore';
 
 var firebaseConfig = {
     // My config
-
+    apiKey: "AIzaSyCAZO3B6s2kQc6ShlkApQ89hnvTYQFhvww",
+    authDomain: "chatapp-282bf.firebaseapp.com",
+    projectId: "chatapp-282bf",
+    storageBucket: "chatapp-282bf.appspot.com",
+    messagingSenderId: "312152807790",
+    appId: "1:312152807790:web:0fd7b69829fca776f4097f"
 };
 
 let app;

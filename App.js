@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { Component } from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
 import LogIn from "./LoginComponent";
 import Register from "./RegisterComponent";
 import Chat from "./ChatComponent";
-
+// test
 const Stack = createStackNavigator();
 
 class App extends Component {
   render() {
     return (
       <NavigationContainer>
-      <Stack.Navigator >
-      
-      <Stack.Screen name="Login" component={LogIn} />
-      <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="Chat" component={Chat} />
-      </Stack.Navigator>
+        <Stack.Navigator>
+          <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="Login" component={LogIn} />
+          <Stack.Screen name="Register" component={Register} />
+        </Stack.Navigator>
       </NavigationContainer>
-      );
+    );
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Input, Button, Divider } from "react-native-elements";
-import { auth } from './firebase'
+import { auth } from "./firebase";
 
 class Login extends Component {
   constructor(props) {
@@ -12,33 +12,25 @@ class Login extends Component {
       password: "",
     };
   }
-  // registerNow(){
-  //   auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-  //   .then((userCredential) => {
-  //   // Signed in
-  //   var user = userCredential.user;
-  //   user.updateProfile({
-  //   displayName: this.state.name,
-  //   photoURL: this.state.imageUrl ? this.state.imageUrl : "https://1.gravatar.com/avatar/dcf6bcac06c1011632d4a4466edd7371?s=180&d=identicon&r=G"
-  //   }).catch(function (error) {
-  //   alert(error.message)
-  //   });
-  //   // ...
-  //   })
-  //   .catch((error) => {
-  //   var errorMessage = error.message;
-  //   alert(errorMessage)
-  //   });
 
-  // }
-  signIn(){
-    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-    .catch((error) => {
-    var errorMessage = error.message;
-    alert(errorMessage)
-    });
+  signIn() {
+    auth
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .catch((error) => {
+        var errorMessage = error.message;
+        alert(errorMessage);
+      });
   }
-
+  useEffect() {
+    const unsubscribe = auth.onAuthStateChanged(function (user) {
+      if (user) {
+        navigation.replace("Chat");
+      } else {
+        // No user is signed in.
+      }
+    });
+    return unsubscribe;
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -61,10 +53,14 @@ class Login extends Component {
           containerStyle={styles.formInput}
           leftIconContainerStyle={styles.formIcon}
         />
-        
-        <View style={{ marginTop: 30 }}>
-          <Button style={{ marginBottom: 20 }} color="#5637DD" title="Log In" onPress={() => navigate("Chat")} />
 
+        <View style={{ marginTop: 30 }}>
+          <Button
+            style={{ marginBottom: 20 }}
+            color="#5637DD"
+            title="Log In"
+            onPress={() => this.signIn()}
+          />
         </View>
         <Divider width={0.2} />
         <View style={styles.formButton}>
@@ -72,9 +68,8 @@ class Login extends Component {
             type="outline"
             title="Sign up"
             onPress={() => navigate("Register")}
-            
           />
-        </View> 
+        </View>
       </View>
     );
   }
